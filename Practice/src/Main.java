@@ -1,61 +1,42 @@
-import collections.LinkedList;
-import collections.Node;
-import collections.NodeIterator;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.concurrent.Callable;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Scanner;
 
 public class Main {
-    static class Node implements  Iterable<Integer>{
-        private int data;
-        private Node next;
-
-        public Node(int data, Node next){
-            this.data = data;
-            this.next = next;
-        }
-
-        @Override
-        public Iterator<Integer> iterator() {
-            return new NodeIterator(this);
-        }
-    }
-
-    static class NodeIterator implements Iterator<Integer> {
-
-        Node curr;
-
-        NodeIterator(Node curr){
-            this.curr = curr;
-        }
-
-        public boolean hasNext(){
-            return curr != null;
-        }
-
-        public Integer next(){
-            Integer toReturn = curr.data;
-            curr = curr.next;
-
-            return toReturn;
-        }
-    }
 
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int M = Integer.parseInt(sc.nextLine());
+        String A = sc.nextLine();
+        String[] text = new String[M];
 
-        collections.Node<Integer> head = new collections.Node<>(5);
-        head.next = new collections.Node<>(1);
-        head.next.next = new collections.Node<>(15);
-
-        collections.NodeIterator<Integer> NodeIterator = new collections.NodeIterator<>(head);
-
-        System.out.print("Linked List iteration using iterator: ");
-        while(NodeIterator.hasNext()){
-            System.out.printf("%d ",NodeIterator.next().data);
+        for (int i = 0; i < M; i++) {
+            text[i] = sc.nextLine();
         }
+
+        if (text.length == 0) return;
+
+        int[] order = new int[M + 1];
+        Arrays.fill(order, -1);
+
+        for (int i = 0; i < text.length; i++) {
+            int countA = countFinder(text[i], A);
+            order[countA] = i;
+        }
+
+        for (int i : order) {
+            if (i >= 0) System.out.println(text[i]);
+        }
+
     }
 
-
+    public static int countFinder(String t, String A) {
+        String[] temp = t.split(" ");
+        HashMap<String, Integer> hm = new HashMap<>();
+        hm.put(A, 0);
+        for (String s : temp) {
+            hm.put(s, hm.getOrDefault(s, 0) + 1);
+        }
+        return hm.get(A);
+    }
 }
