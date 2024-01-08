@@ -1,6 +1,6 @@
 package semaphores;
 
-public class Main {
+public class Foo {
     public void first(Runnable printFirst) throws InterruptedException {
         // printFirst.run() outputs "first". Do not change or remove this line.
         printFirst.run();
