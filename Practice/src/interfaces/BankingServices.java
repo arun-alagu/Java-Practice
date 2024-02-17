@@ -5,4 +5,5 @@ public interface BankingServices {
     void deposit();
     void checkBalance(int acc);
     void checkBalance(String upi);
+
 }
