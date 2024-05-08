@@ -3,9 +3,17 @@ package collections;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.LinkedHashSet;
 
 public class Main {
     public static void main(String[] args) {
+
+        LinkedHashSet<Integer> lhs = new LinkedHashSet<>();
+        lhs.add(2);
+        lhs.add(3);
+        lhs.remove(3);
+        lhs.add(1);
+        lhs.add(3);
 
         List<Integer> list = new ArrayList<>(List.of(1,2,3));
 
@@ -41,5 +49,14 @@ public class Main {
         for (Integer integer : list) {
             System.out.printf("%d ",integer);
         }
+
+        System.out.println();
+        
+        System.out.print("Linked Hash Set:");
+        for(int i : lhs){
+            System.out.printf("%d ", i);
+        }
+
+        System.out.println();
     }
 }
