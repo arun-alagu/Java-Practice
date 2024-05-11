@@ -3,6 +3,7 @@ package collections;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.TreeSet;
 import java.util.LinkedHashSet;
 
 public class Main {
@@ -15,6 +16,11 @@ public class Main {
         lhs.add(1);
         lhs.add(3);
 
+        TreeSet<Integer> tset = new TreeSet<>();
+        tset.add(5);
+        tset.add(1);
+        tset.add(2);
+        
         List<Integer> list = new ArrayList<>(List.of(1,2,3));
 
         Node<Integer> head = new Node<>(5);
@@ -58,5 +64,12 @@ public class Main {
         }
 
         System.out.println();
+
+        System.out.print("TreeSet values using iterator: ");
+        Iterator tsetIterator = tset.iterator();
+        while(tsetIterator.hasNext()){
+            System.out.printf("%d ", tsetIterator.next());
+        }
+        System.out.println(tset.higher(1));
     }
 }
